@@ -48,35 +48,39 @@ const initialProducts = [
 ];
 
 const App = () => {
-    const [products, setProducts] = useState(initialProducts);
+    const [products] = useState(initialProducts);
+    const [cart, setCart] = useState([]);
     const [sortOption, setSortOption] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
 
-    // Function to sort products
     const handleSortChange = (e) => {
         const sortValue = e.target.value;
         setSortOption(sortValue);
-        let sortedProducts = [...products];
-
-        if (sortValue === 'price-asc') {
-            sortedProducts.sort((a, b) => a.price - b.price);
-        } else if (sortValue === 'price-desc') {
-            sortedProducts.sort((a, b) => b.price - a.price);
-        } else if (sortValue === 'name-asc') {
-            sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
-        } else if (sortValue === 'name-desc') {
-            sortedProducts.sort((a, b) => b.title.localeCompare(a.title));
-        }
-
-        setProducts(sortedProducts);
     };
 
-    // Function to filter products
     const handleSearchChange = (e) => {
         setSearchQuery(e.target.value.toLowerCase());
     };
 
-    const filteredProducts = products.filter((product) =>
+    const addToCart = (product) => {
+        setCart((prevCart) => [...prevCart, product]);
+    };
+
+    const removeFromCart = (index) => {
+        setCart((prevCart) => prevCart.filter((_, i) => i !== index));
+    };
+
+    const totalCartPrice = cart.reduce((total, item) => total + item.price, 0);
+
+    const sortedProducts = [...products].sort((a, b) => {
+        if (sortOption === 'price-asc') return a.price - b.price;
+        if (sortOption === 'price-desc') return b.price - a.price;
+        if (sortOption === 'name-asc') return a.title.localeCompare(b.title);
+        if (sortOption === 'name-desc') return b.title.localeCompare(a.title);
+        return 0;
+    });
+
+    const filteredProducts = sortedProducts.filter((product) =>
         product.title.toLowerCase().includes(searchQuery)
     );
 
@@ -87,7 +91,7 @@ const App = () => {
             <div className="controls">
                 <input
                     type="text"
-                    placeholder="მოძებნეთ ლეპტოპები..."
+                    placeholder="მოზებნეთ ლეპტოპები..."
                     value={searchQuery}
                     onChange={handleSearchChange}
                     className="search-input"
@@ -103,8 +107,27 @@ const App = () => {
 
             <div className="product-list">
                 {filteredProducts.map((product, index) => (
-                    <Product key={index} {...product} />
+                    <div key={index} className="product-item">
+                        <Product {...product} />
+                        <button onClick={() => addToCart(product)} className="add-to-cart-btn">Add to Cart</button>
+                    </div>
                 ))}
+            </div>
+
+            <div className="cart">
+                <h2>Cart</h2>
+                {cart.length > 0 ? (
+                    <>
+                        <ul>
+                            {cart.map((item, idx) => (
+                                <li key={idx}>{item.title} - ${item.price.toFixed(2)} <button onClick={() => removeFromCart(idx)} className="remove-btn">Remove</button></li>
+                            ))}
+                        </ul>
+                        <p>Total: ${totalCartPrice.toFixed(2)}</p>
+                    </>
+                ) : (
+                    <p>Your cart is empty.</p>
+                )}
             </div>
         </div>
     );
