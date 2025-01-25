@@ -1,18 +1,15 @@
 import "react";
 import "./Product";
+import './App.css'
+import PropTypes from 'prop-types';
 
-// eslint-disable-next-line react/prop-types
 const Cart = ({ cart, removeFromCart, totalCartPrice }) => {
     return (
         <div className="cart">
             <h2>Cart</h2>
-           
 
-            {/* eslint-disable-next-line react/prop-types */}
             {cart.length > 0 ? (
                 <ul>
-                    
-                    {/* eslint-disable-next-line react/prop-types */}
                     {cart.map((item, idx) => (
                         <li key={idx}>
                             {item.title} - ${item.price.toFixed(2)}
@@ -28,10 +25,22 @@ const Cart = ({ cart, removeFromCart, totalCartPrice }) => {
             ) : (
                 <p>Your cart is empty.</p>
             )}
-            {/* eslint-disable-next-line react/prop-types */}
+
             <h3>Total: ${totalCartPrice.toFixed(2)}</h3>
         </div>
     );
+};
+
+
+Cart.propTypes = {
+    cart: PropTypes.arrayOf(
+        PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            price: PropTypes.number.isRequired,
+        })
+    ).isRequired,
+    removeFromCart: PropTypes.func.isRequired,
+    totalCartPrice: PropTypes.number.isRequired,
 };
 
 export default Cart;
