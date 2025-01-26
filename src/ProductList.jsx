@@ -23,23 +23,23 @@ const ProductList = ({
                 />
             </div>
 
-            {/* Sort */}
+            {/* Price option */}
             <div className="controls">
                 <select
                     value={sortOption}
                     onChange={handleSortChange}
                     className="sort-dropdown"
-                >
-                    <option value="">Sort By</option>
-                    <option value="price-asc">Price: Low to High</option>
-                    <option value="price-desc">Price: High to Low</option>
-                    <option value="name-asc">Name: A to Z</option>
-                    <option value="name-desc">Name: Z to A</option>
-                </select>
-            </div>
+                    >
+                <option value="">Sort By</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="name-asc">Name: A to Z</option>
+                <option value="name-desc">Name: Z to A</option>
+            </select>
+        </div>
 
 
-            {/* Product List */}
+    {/* Product List */}
             <div className="product-list">
                 {filteredProducts.length > 0 ? (
                     filteredProducts.map((product, index) => (
@@ -61,10 +61,10 @@ const ProductList = ({
     );
 };
 
-            // PropTypes
-            ProductList.propTypes = {
-            filteredProducts: PropTypes.arrayOf(
-            PropTypes.shape({
+// PropTypes
+ProductList.propTypes = {
+    filteredProducts: PropTypes.arrayOf(
+        PropTypes.shape({
             id: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
             price: PropTypes.number.isRequired,

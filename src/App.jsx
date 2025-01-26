@@ -14,10 +14,10 @@ const App = () => {
     const handleSearchChange = (e) => setSearchQuery(e.target.value.toLowerCase());
 
     const addToCart = (product) => setCart([...cart, product]);
-    const removeFromCart = (index) =>
-        setCart(cart.filter((_, i) => i !== index));
-
+    const removeFromCart = (index) => setCart(cart.filter((_, i) => i !== index));
     const totalCartPrice = cart.reduce((total, item) => total + item.price, 0);
+
+    {/* ქვემოთ, დასორტილი if-ით Switch-ით შეცვლა*/}
 
     const sortedProducts = [...products].sort((a, b) => {
         switch (sortOption) {

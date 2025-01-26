@@ -6,8 +6,9 @@ import PropTypes from 'prop-types';
 const Cart = ({ cart, removeFromCart, totalCartPrice }) => {
     return (
         <div className="cart">
-            <h2>Cart</h2>
+            <h1>Cart</h1>
 
+            {/* აქ გავაკეთე -  cart, remove Cart, total Price */}
             {cart.length > 0 ? (
                 <ul>
                     {cart.map((item, idx) => (
@@ -17,7 +18,7 @@ const Cart = ({ cart, removeFromCart, totalCartPrice }) => {
                                 onClick={() => removeFromCart(idx)}
                                 className="remove-btn"
                             >
-                                Remove
+                         Remove
                             </button>
                         </li>
                     ))}
@@ -26,7 +27,7 @@ const Cart = ({ cart, removeFromCart, totalCartPrice }) => {
                 <p>Your cart is empty.</p>
             )}
 
-            <h3>Total: ${totalCartPrice.toFixed(2)}</h3>
+            <h2>Total: ${totalCartPrice.toFixed(2)}</h2>
         </div>
     );
 };
