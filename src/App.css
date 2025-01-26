@@ -15,8 +15,6 @@ body {
   color: #333333;
 }
 
-
-
 .search-container {
   display: flex;
   align-items: center;
@@ -125,7 +123,6 @@ select:focus {
   color: #999;
   margin-left: 10px;
 }
-
 
 .badge {
   background: #e74c3c;
