@@ -4,6 +4,7 @@ import ProductList from "./ProductList";
 import Cart from "./Cart";
 import "./App.css";
 
+
 const App = () => {
     const [products] = useState(productsData.data);
     const [cart, setCart] = useState([]);
