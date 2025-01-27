@@ -65,7 +65,6 @@ select:focus {
   box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
 
-
 .product-card {
   background: #fff;
   padding: 20px;
@@ -141,9 +140,7 @@ select:focus {
   margin-bottom: 35px;
 }
 
-
-
-/* Add to Cart button */
+/* Add to Cart button    */
 .add-to-cart-btn {
   background-color: #28a745;
   color: #fff;
@@ -190,7 +187,6 @@ select:focus {
   border-bottom: none;
 }
 
-
 /* Remove button */
 .remove-btn {
   background-color: #dc3545;
@@ -203,8 +199,7 @@ select:focus {
   transition: all 0.3s ease;
 }
 
-
-/* Hover effect for cart items */
+/* Hover effect for cart  */
 .cart li {
   background-color: #f9f9f9;
 }
@@ -230,8 +225,6 @@ select:focus {
 .product-card:hover {
   transform: translateY(-5px);
 }
-
-
 
 /* Total price styling */
 .cart .total {
